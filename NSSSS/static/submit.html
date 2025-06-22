@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS LENS2025 - Submit Your Photo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        input[type="file"] {
+            margin-top: 5px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            color: red;
+            text-align: center;
+        }
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Your Photo for NSS LENS2025</h1>
+        <form id="submissionForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fullName">Your Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="vitId">Your VIT ID:</label>
+                <input type="text" id="vitId" name="vitId" pattern="[0-9]{2}[A-Z]{3}[0-9]{4}" title="Format: YYXXXNNNN (e.g., 22BCE1234)" required>
+            </div>
+            <div class="form-group">
+                <label for="photoTitle">Photo Title:</label>
+                <input type="text" id="photoTitle" name="photoTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="theme">Select Theme:</label>
+                <select id="theme" name="theme" required>
+                    <option value="">-- Please Select --</option>
+                    <option value="nature">Nature</option>
+                    <option value="service">Service</option>
+                    <option value="community">Community</option>
+                    <option value="nss-work">NSS Related Work</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Short Description (Optional):</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="photoFile">Upload Your Photo:</label>
+                <input type="file" id="photoFile" name="photoFile" accept=".jpg, .jpeg, .png" required>
+                <small>Max 10MB, JPG/PNG format.</small>
+            </div>
+            <button type="submit">Submit Photo</button>
+            <p class="message" id="submissionMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('submissionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const photoFile = document.getElementById('photoFile').files[0];
+            const submissionMessage = document.getElementById('submissionMessage');
+            const vitId = document.getElementById('vitId').value;
+
+            submissionMessage.textContent = ''; // Clear previous messages
+            submissionMessage.classList.remove('success-message'); // Clear success class
+
+            // Basic validation for VIT ID format
+            const vitIdPattern = /^[0-9]{2}[A-Z]{3}[0-9]{4}$/;
+            if (!vitIdPattern.test(vitId)) {
+                submissionMessage.textContent = "VIT ID format is incorrect. (e.g., 22BCE1234)";
+                return;
+            }
+
+
+            if (photoFile) {
+                // Check file size (10MB limit)
+                const maxFileSize = 10 * 1024 * 1024; // 10 MB in bytes
+                if (photoFile.size > maxFileSize) {
+                    submissionMessage.textContent = "File size exceeds 10MB limit.";
+                    return;
+                }
+
+                // Check file type
+                const allowedTypes = ['image/jpeg', 'image/png'];
+                if (!allowedTypes.includes(photoFile.type)) {
+                    submissionMessage.textContent = "Only JPG/PNG formats are allowed.";
+                    return;
+                }
+
+                // In a real application, you would send this data (including the file)
+                // to a server using FormData and fetch() or XMLHttpRequest.
+                // The server would then handle saving the file and form data to a database.
+                // For this example, we'll just simulate success.
+
+                submissionMessage.textContent = "Your photo has been submitted successfully! (This is a simulation. A real submission requires a server-side backend.)";
+                submissionMessage.classList.add('success-message');
+                document.getElementById('submissionForm').reset(); // Clear the form
+            } else {
+                submissionMessage.textContent = "Please select a photo to upload.";
+            }
+        });
+    </script>
+</body>
+</html>

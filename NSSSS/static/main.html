@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS LENS2025 - Capture the Spirit! 📸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #28a745;
+            --dark-green: #218838;
+            --light-green: #d4edda;
+            --blue-accent: #007bff;
+            --light-grey: #f8f8f8;
+            --dark-text: #333;
+            --white: #fff;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e6ffe6, #c2f0c2); /* Soft green gradient */
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary-green), #4CAF50);
+            color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px var(--shadow-medium);
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        .header-logo {
+            flex-shrink: 0;
+            margin: 10px; /* Add some margin around logos */
+        }
+
+        .header-logo img {
+            max-height: 80px; /* Increased logo size slightly */
+            width: auto;
+            display: block; /* Remove extra space below image */
+        }
+
+        .header-content {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0 20px; /* Space between logos and title */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em; /* Larger title */
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--dark-green);
+        }
+
+        header p {
+            margin-top: 5px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+
+        nav {
+            background-color: var(--dark-text);
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--white);
+            text-align: center;
+            padding: 16px 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: var(--light-grey);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--light-green);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 2.2em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.emoji {
+            margin-right: 10px;
+            font-size: 1.2em; /* Adjust emoji size relative to heading */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default bullet */
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            background-color: var(--white);
+            padding: 10px 15px;
+            border-left: 5px solid var(--primary-green);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        li strong {
+            color: var(--dark-green);
+        }
+        
+        li .bullet-emoji {
+            margin-right: 10px;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .guidelines-section p {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .guidelines-section h3 {
+            color: var(--blue-accent);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            border-bottom: 1px dashed var(--light-green);
+            padding-bottom: 5px;
+        }
+
+        .button-link {
+            display: inline-block;
+            background-color: var(--blue-accent);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-link:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            background-color: var(--dark-text);
+            color: var(--white);
+            font-size: 0.9em;
+            box-shadow: 0 -2px 5px var(--shadow-medium);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .header-logo {
+                margin: 5px auto;
+            }
+            .header-content {
+                order: 2; /* Move title/subtitle below logos on small screens */
+                margin: 15px 0;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            nav a {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            li {
+                flex-direction: column; /* Stack bullet and text */
+                align-items: flex-start;
+            }
+            li .bullet-emoji {
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+            nav a {
+                width: 100%;
+                display: block;
+                border-bottom: 1px solid #444;
+            }
+            .button-link {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="whiteVitLogo.png" alt="VIT Logo">
+        </div>
+        <div class="header-content">
+            <h1>NSS LENS2025 📸</h1>
+            <p>A Photography Competition by VIT Chennai NSS Units 🇮🇳</p>
+        </div>
+        <div class="header-logo">
+            <img src="nss_logo.png" alt="NSS Logo">
+        </div>
+    </header>
+
+    <nav>
+        <a href="main.html">Home 🏠</a>
+        <a href="#themes">Themes ✨</a>
+        <a href="#guidelines">Guidelines 📜</a>
+        <a href="submit.html">Submit Your Photo 🚀</a>
+    </nav>
+
+    <div class="container">
+        <section id="welcome">
+            <h2><span class="emoji">👋</span> Welcome to NSS LENS2025!</h2>
+            <p>Capture the essence of service, community, and nature through your lens. This competition is a fantastic opportunity for all VIT Chennai NSS unit students to showcase their photographic talent and highlight the values of NSS. Let's make this event a grand success! 🌟</p>
+        </section>
+
+        <section id="themes">
+            <h2><span class="emoji">💡</span> Our Inspiring Themes</h2>
+            <ul>
+                <li><span class="bullet-emoji">🌿</span> <strong>Nature:</strong> Showcase the breathtaking beauty of the natural world, serene landscapes, vibrant flora, and fascinating fauna.</li>
+                <li><span class="bullet-emoji">🤝</span> <strong>Service:</strong> Depict heartfelt acts of service, dedicated volunteering, impactful community work, and the spirit of helping others in need.</li>
+                <li><span class="bullet-emoji">👨‍👩‍👧‍👦</span> <strong>Community:</strong> Capture heartwarming moments that reflect strong community spirit, rich local culture, and collective endeavors that bring people together.</li>
+                <li><span class="bullet-emoji">⚙️</span> <strong>NSS Related Work:</strong> Photos specifically highlighting NSS activities, impactful camps, memorable events, and innovative initiatives undertaken by NSS volunteers.</li>
+            </ul>
+            <p><strong>Remember:</strong> Your photos should align with one or more of these powerful themes to be considered for the competition. Unleash your creativity! ✨</p>
+        </section>
+
+        <section id="guidelines" class="guidelines-section">
+            <h2><span class="emoji">📝</span> Competition Guidelines</h2>
+            <h3>Eligibility</h3>
+            <p>Open exclusively to all enrolled students of VIT Chennai NSS units. Show us your best! 🎓</p>
+
+            <h3>Submission</h3>
+            <p>Only original, unpublished photos will be accepted. Authenticity is key! 💯</p>
+            <p>Maximum file size allowed: <strong>10MB</strong>.</p>
+            <p>Accepted formats: <strong>JPG/JPEG and PNG</strong>.</p>
+
+            <h3>Deadline</h3>
+            <p>The last date for photo submission is: <strong>10th July 2025</strong>. Don't miss out! 🗓️</p>
+
+            <h3>Judging Criteria</h3>
+            <p>Entries will be meticulously judged based on the following:</p>
+            <ul>
+                <li><span class="bullet-emoji">🎨</span> <strong>Creativity:</strong> Originality, artistic expression, and unique perspective.</li>
+                <li><span class="bullet-emoji">🎯</span> <strong>Relevance:</strong> How well the photo captures and communicates the chosen theme(s).</li>
+                <li><span class="bullet-emoji">✨</span> <strong>Clarity & Quality:</strong> Technical proficiency, sharpness, composition, and overall visual appeal.</li>
+            </ul>
+        </section>
+
+        <section id="submit-action" style="text-align: center; margin-top: 50px;">
+            <p style="font-size: 1.3em; font-weight: 600; color: var(--dark-green);">Ready to share your vision? 🌟</p>
+            <a href="submit.html" class="button-link">Submit Your Photo Now! 🚀</a>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2025 NSS LENS2025. All rights reserved. Made with ❤️ by VIT Chennai NSS.
+    </footer>
+</body>
+</html>
